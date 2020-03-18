@@ -1,0 +1,6 @@
+bin/
+obj/
+*.vspscc
+.vs/
+*.dbmdl
+*.jfm
