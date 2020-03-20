@@ -1,24 +1,14 @@
-﻿using FluentValidation.Results;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using Flunt.Notifications;
 
 namespace Mediador
 {
-    public class Resultado
+    public class Resultado : Notifiable
     {
-        public static Resultado Ok = new Resultado();
-
-        public List<string> Validations = new List<string>();
-
         public object Data { get; set; }
 
-        public bool isValid { get { return !Validations.Any(); } }
-
-        public void AddError(string erro)
-        {
-            this.Validations.Add(erro);
-        }
+        public IEnumerable<string> Validations => this.Notifications.Select(c => c.Message);
+       
     }
 }

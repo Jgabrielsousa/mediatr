@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace Mediador.Pipelines
 {
@@ -35,7 +36,7 @@ namespace Mediador.Pipelines
 
             foreach (var failure in failures)
             {
-                resultado.AddError(failure.ErrorMessage);
+                resultado.AddNotification(Guid.NewGuid().ToString(), failure.ErrorMessage);
             }
 
             return Task.FromResult(resultado as TResponse);

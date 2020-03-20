@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using FluentValidation.Results;
 using Mediador.Comandos.CriarUsuario;
 using Mediador.Comandos.Exemplo;
+using Mediador.Comandos.FazerCompras;
 using Mediador.Entidades;
 using Mediador.Validacoes;
 using MediatR;
@@ -34,7 +35,7 @@ namespace Mediador.Controllers
 
             var response = await _mediator.Send(comando);
 
-            if (response.isValid)
+            if (response.Valid)
             {
 
                 return Ok(response.Data);
@@ -62,5 +63,23 @@ namespace Mediador.Controllers
                 return BadRequest(erro.Message);
             }
         }
+
+        // GET api/values/5
+        [HttpGet("Teste")]
+        public async Task<ActionResult<string>> Teste()
+        {
+            var comando = new FazerComprasComando();
+
+            try
+            {
+                var retorno = await _mediator.Send(comando);
+                return Ok(retorno);
+            }
+            catch (Exception erro)
+            {
+                return BadRequest(erro.Message);
+            }
+        }
+
     }
 }
