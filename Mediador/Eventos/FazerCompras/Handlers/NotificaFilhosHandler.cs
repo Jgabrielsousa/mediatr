@@ -12,12 +12,9 @@ namespace Mediador.Eventos.FazerCompras
 
         public Task Handle(FazerComprasEvento notification, CancellationToken cancellationToken)
         {
-
+            //add some comments
             int? teste = 1;
-
             var result = teste ?? 0;
-
-
             return Task.FromResult(result);
         }
     }
