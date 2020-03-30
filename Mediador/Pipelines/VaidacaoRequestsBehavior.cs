@@ -36,6 +36,7 @@ namespace Mediador.Pipelines
 
             foreach (var failure in failures)
             {
+              
                 resultado.AddNotification(Guid.NewGuid().ToString(), failure.ErrorMessage);
             }
 

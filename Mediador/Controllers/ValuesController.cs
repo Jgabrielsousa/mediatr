@@ -7,6 +7,7 @@ using FluentValidation.Results;
 using Mediador.Comandos.CriarUsuario;
 using Mediador.Comandos.Exemplo;
 using Mediador.Comandos.FazerCompras;
+using Mediador.Comandos.ItemNotificavel;
 using Mediador.Entidades;
 using Mediador.Validacoes;
 using MediatR;
@@ -68,8 +69,27 @@ namespace Mediador.Controllers
         [HttpGet("Teste")]
         public async Task<ActionResult<string>> Teste()
         {
-            var comando = new FazerComprasComando();
+            var comando = new FazerComprasComando(CommandVersion.V2);
+            comando.Numero = 2;
 
+            try
+            {
+                var retorno = await _mediator.Send(comando);
+                return Ok(retorno);
+            }
+            catch (Exception erro)
+            {
+                return BadRequest(erro.Message);
+            }
+        }
+
+        // GET api/values/5
+        [HttpGet("ComandoNotificavel")]
+        public async Task<ActionResult<string>> ComandoNotificavel()
+        {
+            var comando = new ComandoNotificavel();
+            comando.FirstPaymentDate = DateTime.MinValue;
+            comando.Document = "x";
             try
             {
                 var retorno = await _mediator.Send(comando);

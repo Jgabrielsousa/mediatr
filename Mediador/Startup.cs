@@ -62,7 +62,7 @@ namespace Mediador
 
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(TimerRequestsBehavior<,>));
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggerRequestsBehavior<,>));
-            services.AddScoped(typeof(IPipelineBehavior<,>), typeof(VaidacaoRequestsBehavior<,>));
+           // services.AddScoped(typeof(IPipelineBehavior<,>), typeof(VaidacaoRequestsBehavior<,>));
 
 
             services.AddMediatR(assembly);
