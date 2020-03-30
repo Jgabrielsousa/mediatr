@@ -16,7 +16,6 @@ namespace Mediador.Comandos
 
         public IEnumerable<IValidator> _validators;
 
-        //public T CurrentInstance { get; set; }
         public abstract T CurrentInstance();
 
         public CommandVersion version { get; set; }
